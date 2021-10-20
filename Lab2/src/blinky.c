@@ -34,7 +34,6 @@
 #include "inc/hw_gpio.h"
 #include "driverlib/systick.h"
 #include <stdio.h>
-#include <inttypes.h>
 
 //*****************************************************************************
 //
@@ -61,7 +60,7 @@ __error__(char *pcFilename, uint32_t ui32Line)
 
 volatile uint32_t interruptCounter = 0;
 
-// Conta interrupções
+// Conta interrupï¿½ï¿½es
 void SysTickIntHandler(void)
 {
     interruptCounter++;
@@ -90,10 +89,10 @@ main(void)
     {
     }
     
-    // Habilita a porta do GPIO que é usada para o botão
+    // Habilita a porta do GPIO que ï¿½ usada para o botï¿½o
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOJ);
 
-    // Verifica se o acesso ao periférico está habilitado
+    // Verifica se o acesso ao perifï¿½rico estï¿½ habilitado
     while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOJ))
     {
     }
@@ -131,6 +130,7 @@ main(void)
     
     reactionTime = SysTickValueGet() - sysTickValue + (10000000 * interruptCounter);
     
-    printf("Clocks entre LED acender e SW1 ser pressionado: %d\n", reactionTime);
+    printf("Clocks: %d\n", reactionTime);
+    printf("%.4f segundos\n", (reactionTime*0.000000008333));
    
 }
